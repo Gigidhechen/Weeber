@@ -9,11 +9,11 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object ServiceGenerator {
+object ServiceGeneratorLorem {
 
     private val builder = Retrofit.Builder()
         .addCallAdapterFactory(RxJavaCallAdapterFactory.createAsync())
-        .baseUrl("https://randomuser.me/api/")
+        .baseUrl("https://api.api-ninjas.com/v1/loremipsum")
         .addConverterFactory(
             GsonConverterFactory.create(GsonBuilder().serializeNulls().create()) )
 

@@ -28,7 +28,7 @@ class RecyclerAdapter (val items : ArrayList<User>?) : RecyclerView.Adapter<Recy
         val item = items?.get(position)
         holder.bind(item)
         holder.itemView.setOnClickListener {
-            onContractClickListener?.onContractClick(position,item!!)
+            onContractClickListener?.onClick(position,item!!)
         }
     }
 
@@ -56,7 +56,7 @@ class RecyclerAdapter (val items : ArrayList<User>?) : RecyclerView.Adapter<Recy
                 var imageUser : Bitmap? = null
                 val `in` = java.net.URL(info.picture?.large.toString()).openStream()
                 imageUser = BitmapFactory.decodeStream(`in`)
-                name.text = info.name?.first.toString() + info.name?.last.toString()
+                name.text = info.name?.first.toString() + " " + info.name?.last.toString()
                 gender.text = info.gender
                 image.setImageBitmap(imageUser)
             }
@@ -64,7 +64,7 @@ class RecyclerAdapter (val items : ArrayList<User>?) : RecyclerView.Adapter<Recy
     }
 
     interface OnContractClickListener {
-        fun onContractClick(position: Int, item: User)
+        fun onClick(position: Int, item: User)
     }
 
 

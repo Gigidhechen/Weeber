@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">Weeber</string>
     <string name="worker_name">Gigid He</string>
-    <string name="gender">Masculino</string>
+    <string name="gender">Male</string>
     <string name="price">$800</string>
     <string name="review">4.5/5</string>
     <string name="distance">14.7 km</string>
+    <string name="contacta">Contacta</string>
+    <string name="correo">gigid_he@gmail.com</string>
+    <string name="telefono">1234567890 </string>
+    <string name="textobtn">Enviar Mensaje</string>
 </resources>

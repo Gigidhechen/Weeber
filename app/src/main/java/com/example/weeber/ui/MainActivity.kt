@@ -1,5 +1,6 @@
 package com.example.weeber.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.StrictMode
 import androidx.activity.enableEdgeToEdge
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weeber.R
 import com.example.weeber.data.model.User
+import com.example.weeber.ui.CardActivity.CardActivity
 
 class MainActivity : AppCompatActivity(), MainContract.View {
     private var presenter: MainPresenter? = null
@@ -40,5 +42,12 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             timeList.layoutManager = LinearLayoutManager(this@MainActivity)
             timeList.adapter = recyclerAdapter
         }
+
+        recyclerAdapter.setOnClickListener(object : RecyclerAdapter.OnContractClickListener {
+            override fun onClick(position: Int, user: User) {
+                val intent = Intent(this@MainActivity, CardActivity::class.java)
+                startActivity(intent)
+            }
+        })
     }
 }

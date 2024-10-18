@@ -5,6 +5,6 @@ import retrofit2.http.GET
 import rx.Observable
 
 interface UserAPI {
-    @GET("api/")
+    @GET("?results=10")
     fun getUser(): Observable<UserResponse>
 }

@@ -3,6 +3,7 @@ package com.example.weeber.ui
 import android.content.Intent
 import android.os.Bundle
 import android.os.StrictMode
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         StrictMode.setThreadPolicy(policy)
         presenter?.generateItemsData()
     }
+
 
     override fun showItemsData(items: ArrayList<User>) {
         val timeList: RecyclerView? = findViewById(R.id.recyclerview_worker)

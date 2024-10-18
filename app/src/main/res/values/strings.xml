@@ -9,4 +9,8 @@
     <string name="correo">gigid_he@gmail.com</string>
     <string name="telefono">1234567890 </string>
     <string name="textobtn">Enviar Mensaje</string>
+    <string name="LoginCorreo">Correo</string>
+    <string name="LoginPassword">Contraseña</string>
+    <string name="LoginBtn">Iniciar Sesión</string>
+    <string name="AcercaDe">Acerca de nosotros</string>">Correo</string>
 </resources>

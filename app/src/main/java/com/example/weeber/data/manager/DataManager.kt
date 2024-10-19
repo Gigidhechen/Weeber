@@ -2,6 +2,7 @@ package com.example.weeber.data.manager
 
 import android.content.Context
 import com.example.appclima.util.SharedPreferencesConnector
+import com.example.weeber.data.model.NumResponse
 import com.example.weeber.data.model.UserResponse
 import com.example.weeber.data.remote.api.LoremAPI
 import com.example.weeber.data.remote.api.NumberAPI
@@ -21,7 +22,7 @@ class DataManager(val context: Context) {
         return ServiceGeneratorLorem.createService(LoremAPI::class.java,context).getDescription()
     }
 
-    fun getPrice() : Observable<ArrayList<Int>>{
+    fun getPrice() : Observable<NumResponse>{
         return ServiceGeneratorNumber.createService(NumberAPI::class.java,context).getRandomNumbers()
     }
 }

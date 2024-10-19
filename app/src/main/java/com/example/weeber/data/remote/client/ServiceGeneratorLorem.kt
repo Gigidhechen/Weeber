@@ -13,7 +13,7 @@ object ServiceGeneratorLorem {
 
     private val builder = Retrofit.Builder()
         .addCallAdapterFactory(RxJavaCallAdapterFactory.createAsync())
-        .baseUrl("https://api.api-ninjas.com/v1/loremipsum")
+        .baseUrl("https://api.api-ninjas.com/v1/loremipsum/")
         .addConverterFactory(
             GsonConverterFactory.create(GsonBuilder().serializeNulls().create()) )
 

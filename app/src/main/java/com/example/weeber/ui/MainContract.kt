@@ -10,6 +10,5 @@ interface MainContract {
 
     interface  Presenter{
        fun generateItemsData()
-
     }
 }

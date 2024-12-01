@@ -3,11 +3,10 @@ package com.example.weeber.ui
 import android.content.Context
 import com.example.weeber.data.manager.DataManager
 import com.example.weeber.data.model.UserResponse
-import com.example.weeber.data.remote.UserInfo
+import com.example.weeber.data.remote.UserInformation
 import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
-import java.io.Console
 
 class MainPresenter(
     private val view: MainContract.View,
@@ -42,7 +41,7 @@ class MainPresenter(
                     e?.printStackTrace()
                 }
                 override fun onNext(t: ArrayList<Int>) {
-                    UserInfo.user.Price = t
+                    UserInformation.user.Price = t
                 }
                 override fun onCompleted() {
                 }
@@ -57,7 +56,7 @@ class MainPresenter(
                     e?.printStackTrace()
                 }
                 override fun onNext(t: ArrayList<Int>) {
-                    UserInfo.user.review = t
+                    UserInformation.user.review = t
                 }
                 override fun onCompleted() {
                 }
@@ -73,7 +72,7 @@ class MainPresenter(
                 }
 
                 override fun onNext(t: ArrayList<Int>) {
-                    UserInfo.user.distance = t
+                    UserInformation.user.distance = t
                 }
 
                 override fun onCompleted() {

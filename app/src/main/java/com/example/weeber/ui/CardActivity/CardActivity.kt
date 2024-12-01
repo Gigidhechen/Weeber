@@ -4,22 +4,17 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.os.StrictMode
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.weeber.R
-import com.example.weeber.data.model.User
-import com.example.weeber.data.remote.UserInfo
+import com.example.weeber.data.remote.UserInformation
 import com.example.weeber.ui.MainActivity
-import com.example.weeber.ui.MainPresenter
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.Firebase
+import com.google.firebase.auth.UserInfo
 import com.google.firebase.auth.auth
-import org.w3c.dom.Text
 
 class CardActivity : AppCompatActivity(), CardContract.View {
     private var presenter: CardPresenter? = null
@@ -56,14 +51,14 @@ class CardActivity : AppCompatActivity(), CardContract.View {
         val precio = findViewById<TextView>(R.id.PrecioContacto)
 
         var imageUser: Bitmap? = null
-        val `in` = java.net.URL(UserInfo.user.user.picture?.large.toString()).openStream()
+        val `in` = java.net.URL(UserInformation.user.user.picture?.large.toString()).openStream()
         imageUser = BitmapFactory.decodeStream(`in`)
 
-        email.text = UserInfo.user.user.email
-        phone.text = UserInfo.user.user.cell
+        email.text = UserInformation.user.user.email
+        phone.text = UserInformation.user.user.cell
         imagen.setImageBitmap(imageUser)
-        name.text = UserInfo.user.user.name?.first + " " + UserInfo.user.user.name?.last
-        precio.text = UserInfo.precio.precio.toString() + "$"
+        name.text = UserInformation.user.user.name?.first + " " + UserInformation.user.user.name?.last
+        precio.text = UserInformation.precio.precio.toString() + "$"
     }
 
     override fun sendEmail() {
@@ -73,7 +68,7 @@ class CardActivity : AppCompatActivity(), CardContract.View {
 
         val intent = Intent(Intent.ACTION_SEND)
 
-        intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("gigidhe@gmail.com"))
+        intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(UserInformation.user.user.email.toString(), "gigidhe@gmail.com"))
         intent.putExtra(Intent.EXTRA_SUBJECT, "Weeber")
         intent.putExtra(Intent.EXTRA_TEXT, emailBody)
 

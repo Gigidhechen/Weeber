@@ -12,11 +12,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.weeber.R
-import com.example.weeber.data.model.Num
 import com.example.weeber.data.model.User
 import com.example.weeber.data.remote.UserInfo
+import com.example.weeber.ui.MainActivity
 import com.example.weeber.ui.MainPresenter
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import org.w3c.dom.Text
 
 class CardActivity : AppCompatActivity(), CardContract.View {
@@ -27,6 +29,17 @@ class CardActivity : AppCompatActivity(), CardContract.View {
 
 
         presenter = CardPresenter(this,this)
+        val nameView = findViewById<TextView>(R.id.userName2)
+        val user = Firebase.auth.currentUser
+        user?.let {
+            val name = it.email
+            nameView.text = name.toString()
+        }
+
+        val btn = findViewById<Button>(R.id.homeButton).setOnClickListener{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         showInformation()
         val button = findViewById<Button>(R.id.buttonSend)
@@ -55,8 +68,6 @@ class CardActivity : AppCompatActivity(), CardContract.View {
 
     override fun sendEmail() {
         val body = findViewById<TextInputEditText>(R.id.textInputContacto)
-
-
 
         val emailBody = body.text.toString()
 

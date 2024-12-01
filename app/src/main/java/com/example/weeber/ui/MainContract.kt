@@ -11,5 +11,7 @@ interface MainContract {
     interface  Presenter{
        fun generateItemsData()
        fun generatePrice()
+       fun generateRating()
+       fun generateDistance()
     }
 }

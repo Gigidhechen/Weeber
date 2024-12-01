@@ -14,6 +14,8 @@ import com.example.weeber.R
 import com.example.weeber.data.model.User
 import com.example.weeber.data.remote.UserInfo
 import com.example.weeber.ui.CardActivity.CardActivity
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 
 class MainActivity : AppCompatActivity(), MainContract.View {
     private var presenter: MainPresenter? = null
@@ -33,7 +35,15 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
         presenter?.generatePrice()
+        presenter?.generateRating()
+        presenter?.generateDistance()
         presenter?.generateItemsData()
+        val nameView = findViewById<TextView>(R.id.userName)
+        val user = Firebase.auth.currentUser
+        user?.let {
+            val name = it.email
+            nameView.text = name.toString()
+        }
     }
 
 
@@ -51,7 +61,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             override fun onClick(position: Int, user: User) {
                 UserInfo.currentPos.pos=position
                 UserInfo.user.user = user
-                UserInfo.precio.precio = UserInfo.price.Price[position]
+                UserInfo.precio.precio = UserInfo.user.Price[position]
                 val intent = Intent(this@MainActivity, CardActivity::class.java)
                 startActivity(intent)
             }

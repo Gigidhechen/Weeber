@@ -10,9 +10,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.weeber.R
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -24,9 +22,10 @@ class LoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         val emailEditText = findViewById<EditText>(R.id.LoginEmail)
         val passwordEditText = findViewById<EditText>(R.id.LoginPassword)
-        val button = findViewById<Button>(R.id.button2)
+        val buttonLogin = findViewById<Button>(R.id.LogIn)
+        val buttonsignIn = findViewById<Button>(R.id.SignIn)
 
-        button.setOnClickListener {
+        buttonLogin.setOnClickListener {
             val email = emailEditText.text.toString().trim()
             val password = passwordEditText.text.toString().trim()
 
@@ -35,6 +34,23 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             signIn(email, password)
+        }
+
+        buttonsignIn.setOnClickListener {
+            val email = emailEditText.text.toString().trim()
+            val password = passwordEditText.text.toString().trim()
+
+            if (email.isEmpty() || password.isEmpty()){
+                Toast.makeText(this, "El correo y la contraseña son necesarios", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
+            if (password.length < 6) {
+                Toast.makeText(this, "La contraseña tiene que ser de 6 digitos.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            RegisterUser(email, password)
         }
     }
 
@@ -46,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun signIn (email: String, password: String){
+    private fun signIn (email: String, password: String){
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -60,5 +76,17 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
 
+    }
+
+    private fun RegisterUser (email: String, password: String){
+        auth.createUserWithEmailAndPassword(email,password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful){
+                    Toast.makeText(this, "Registro exitoso!", Toast.LENGTH_LONG).show()
+                    signIn(email, password)
+                } else {
+                    Toast.makeText(this, "Fallo en el registro. Intentalo de nuevo", Toast.LENGTH_LONG).show()
+                }
+            }
     }
 }

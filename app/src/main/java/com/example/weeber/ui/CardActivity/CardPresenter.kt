@@ -2,7 +2,6 @@ package com.example.weeber.ui.CardActivity
 
 import android.content.Context
 import com.example.weeber.data.manager.DataManager
-import com.example.weeber.data.model.NumResponse
 import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers

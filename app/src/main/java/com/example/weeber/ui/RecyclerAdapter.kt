@@ -61,10 +61,15 @@ class RecyclerAdapter (val items : ArrayList<User>?) : RecyclerView.Adapter<Recy
                 name.text = info.name?.first + " " + info.name?.last
                 gender.text = info.gender
                 image.setImageBitmap(imageUser)
-                if(UserInfo.price.Price.size != 0){
-                    price.text = UserInfo.price.Price[position]?.toString() + "$"
+                if(UserInfo.user.Price.size != 0){
+                    price.text = "$" +UserInfo.user.Price[position]?.toString()
                 }
-
+                if(UserInfo.user.review.size != 0){
+                    review.text = UserInfo.user.review[position].toString()+ "/100"
+                }
+                if(UserInfo.user.distance.size != 0){
+                    distance.text = UserInfo.user.distance[position].toString()+ " Km"
+                }
             }
         }
     }

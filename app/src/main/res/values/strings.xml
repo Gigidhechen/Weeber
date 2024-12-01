@@ -3,7 +3,7 @@
     <string name="worker_name">Gigid He</string>
     <string name="gender">Male</string>
     <string name="price">$800</string>
-    <string name="review">4.5/5</string>
+    <string name="review">0/100</string>
     <string name="distance">14.7 km</string>
     <string name="contacta">Contacta</string>
     <string name="correo">gigid_he@gmail.com</string>
@@ -12,6 +12,8 @@
     <string name="LoginCorreo">Correo</string>
     <string name="LoginPassword">Contraseña</string>
     <string name="LoginBtn">Iniciar Sesión</string>
+    <string name="RegisterBtn">Registrar Cuenta</string>
     <string name="AcercaDe">Acerca de nosotros</string>
     <string name="Correo">Correo</string>
+    <string name="Home">Home</string>
 </resources>

@@ -40,16 +40,47 @@ class MainPresenter(
             .subscribe(object : Subscriber<ArrayList<Int>>() {
                 override fun onError(e: Throwable?) {
                     e?.printStackTrace()
-                    System.out.print("no funciona")
                 }
                 override fun onNext(t: ArrayList<Int>) {
-                    UserInfo.price.Price = t
+                    UserInfo.user.Price = t
                 }
                 override fun onCompleted() {
                 }
             })
         }
 
+    override fun generateRating() {
+        val observable = dataManager.getReview()
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : Subscriber<ArrayList<Int>>() {
+                override fun onError(e: Throwable?) {
+                    e?.printStackTrace()
+                }
+                override fun onNext(t: ArrayList<Int>) {
+                    UserInfo.user.review = t
+                }
+                override fun onCompleted() {
+                }
+            })
+    }
+
+    override fun generateDistance() {
+        val observable = dataManager.getDistance()
+        observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : Subscriber<ArrayList<Int>>() {
+                override fun onError(e: Throwable?) {
+                    e?.printStackTrace()
+                }
+
+                override fun onNext(t: ArrayList<Int>) {
+                    UserInfo.user.distance = t
+                }
+
+                override fun onCompleted() {
+
+                }
+            })
+    }
 
 
 }

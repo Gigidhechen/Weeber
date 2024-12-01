@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weeber.R
 import com.example.weeber.data.model.User
+import com.example.weeber.data.remote.UserInfo
 import com.example.weeber.ui.CardActivity.CardActivity
 
 class MainActivity : AppCompatActivity(), MainContract.View {
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
+        presenter?.generatePrice()
         presenter?.generateItemsData()
     }
 
@@ -47,6 +49,9 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
         recyclerAdapter.setOnClickListener(object : RecyclerAdapter.OnContractClickListener {
             override fun onClick(position: Int, user: User) {
+                UserInfo.currentPos.pos=position
+                UserInfo.user.user = user
+                UserInfo.precio.precio = UserInfo.price.Price[position]
                 val intent = Intent(this@MainActivity, CardActivity::class.java)
                 startActivity(intent)
             }

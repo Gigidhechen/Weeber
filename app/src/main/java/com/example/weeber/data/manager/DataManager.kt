@@ -22,7 +22,7 @@ class DataManager(val context: Context) {
         return ServiceGeneratorLorem.createService(LoremAPI::class.java,context).getDescription()
     }
 
-    fun getPrice() : Observable<NumResponse>{
+    fun getPrice() : Observable<ArrayList<Int>>{
         return ServiceGeneratorNumber.createService(NumberAPI::class.java,context).getRandomNumbers()
     }
 }

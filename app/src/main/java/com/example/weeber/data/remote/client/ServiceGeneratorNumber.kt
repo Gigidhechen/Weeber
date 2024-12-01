@@ -13,7 +13,7 @@ object ServiceGeneratorNumber {
 
     private val builder = Retrofit.Builder()
         .addCallAdapterFactory(RxJavaCallAdapterFactory.createAsync())
-        .baseUrl("http://www.randomnumberapi.com/api/v1.0/random/")
+        .baseUrl("https://www.randomnumberapi.com/api/v1.0/random/")
         .addConverterFactory(
             GsonConverterFactory.create(GsonBuilder().serializeNulls().create()) )
 

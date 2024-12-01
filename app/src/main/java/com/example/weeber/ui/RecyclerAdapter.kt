@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weeber.R
 import com.example.weeber.data.model.User
+import com.example.weeber.data.remote.UserInfo
 
 class RecyclerAdapter (val items : ArrayList<User>?) : RecyclerView.Adapter<RecyclerAdapter.TimesViewHolder>() {
     private var onContractClickListener : OnContractClickListener? = null
@@ -47,6 +48,7 @@ class RecyclerAdapter (val items : ArrayList<User>?) : RecyclerView.Adapter<Recy
         val review = view.findViewById<TextView>(R.id.review)
         val distance = view.findViewById<TextView>(R.id.distance)
         val image = view.findViewById<ImageView>(R.id.worker_image)
+        val price = view.findViewById<TextView>(R.id.price)
 
 
 
@@ -56,9 +58,13 @@ class RecyclerAdapter (val items : ArrayList<User>?) : RecyclerView.Adapter<Recy
                 var imageUser : Bitmap? = null
                 val `in` = java.net.URL(info.picture?.large.toString()).openStream()
                 imageUser = BitmapFactory.decodeStream(`in`)
-                name.text = info.name?.first.toString() + " " + info.name?.last.toString()
+                name.text = info.name?.first + " " + info.name?.last
                 gender.text = info.gender
                 image.setImageBitmap(imageUser)
+                if(UserInfo.price.Price.size != 0){
+                    price.text = UserInfo.price.Price[position]?.toString() + "$"
+                }
+
             }
         }
     }

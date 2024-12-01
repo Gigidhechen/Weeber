@@ -10,5 +10,6 @@ interface MainContract {
 
     interface  Presenter{
        fun generateItemsData()
+       fun generatePrice()
     }
 }

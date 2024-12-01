@@ -5,12 +5,11 @@ import com.example.weeber.data.model.Num
 
 interface CardContract {
     interface View{
-        fun showPrice(item: ArrayList<Num>)
-        fun showDesc(item: String)
+        fun showInformation()
+        fun sendEmail()
     }
 
     interface  Presenter{
-        fun generatePrice()
-        fun generateDesc()
+
     }
 }

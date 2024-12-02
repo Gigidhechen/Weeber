@@ -2,10 +2,8 @@ package com.example.weeber.ui.LoginActivity
 
 import android.content.ContentValues.TAG
 import android.content.Context
-import android.content.Intent
 import android.util.Log
-import android.widget.Toast
-import com.example.weeber.ui.MainActivity
+import com.example.weeber.R
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginPresenter(
@@ -24,7 +22,7 @@ class LoginPresenter(
                     view.onLoginSuccess()
                 } else {
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    view.onLoginFailure("No se pudo hacer Login")
+                    view.onLoginFailure(context.getString(R.string.loginFailure))
                 }
             }
 
@@ -37,7 +35,7 @@ class LoginPresenter(
                     view.onRegistrationSuccess()
                     signIn(email, password)
                 } else {
-                    view.onRegistrationFailure("Fallo en el registro. Intentalo de nuevo")
+                    view.onRegistrationFailure(context.getString(R.string.registrationFailure))
                 }
             }
     }

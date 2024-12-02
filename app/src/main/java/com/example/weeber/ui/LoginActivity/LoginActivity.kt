@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
             val password = passwordEditText.text.toString().trim()
 
             if (email.isEmpty() || password.isEmpty()){
-                Toast.makeText(this, "El correo y la contraseña son necesarios", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.emailpwNeeded), Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
             presenter?.signIn(email, password)
@@ -44,12 +44,12 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
             val password = passwordEditText.text.toString().trim()
 
             if (email.isEmpty() || password.isEmpty()){
-                Toast.makeText(this, "El correo y la contraseña son necesarios", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.emailpwNeeded), Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
             if (password.length < 6) {
-                Toast.makeText(this, "La contraseña tiene que ser de 6 digitos.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.pwSixDigits), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -72,7 +72,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     }
 
     override fun onRegistrationSuccess() {
-        Toast.makeText(this, "Registro exitoso!", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.registrationSuccess), Toast.LENGTH_LONG).show()
     }
 
     override fun onRegistrationFailure(message: String) {

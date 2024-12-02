@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="receiver">gigidhe@gmail.com</string>
+    <string name="subject">Weeber</string>
+    <string name="emailClient">Choose an Email client :</string>
+    <string name="message_rfc822">message/rfc822</string>
+</resources>

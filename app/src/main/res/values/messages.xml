@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="emailpwNeeded">El correo y la contraseña son necesarios</string>
+    <string name="pwSixDigits">La contraseña tiene que ser de 6 digitos.</string>
+    <string name="registrationSuccess">Registro exitoso!</string>
+    <string name="loginFailure">No se pudo hacer Login</string>
+    <string name="registrationFailure">Fallo en el registro. Intentalo de nuevo</string>
+</resources>

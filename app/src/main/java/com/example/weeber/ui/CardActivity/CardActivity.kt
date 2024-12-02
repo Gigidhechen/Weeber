@@ -58,7 +58,7 @@ class CardActivity : AppCompatActivity(), CardContract.View {
         phone.text = UserInformation.user.user.cell
         imagen.setImageBitmap(imageUser)
         name.text = UserInformation.user.user.name?.first + " " + UserInformation.user.user.name?.last
-        precio.text = UserInformation.precio.precio.toString() + "$"
+        precio.text = UserInformation.precio.precio.toString() + getString(R.string.currencySym)
     }
 
     override fun sendEmail() {
@@ -68,12 +68,15 @@ class CardActivity : AppCompatActivity(), CardContract.View {
 
         val intent = Intent(Intent.ACTION_SEND)
 
-        intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(UserInformation.user.user.email.toString(), "gigidhe@gmail.com"))
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Weeber")
+        intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(UserInformation.user.user.email.toString(),
+            getString(
+                R.string.receiver
+            )))
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.subject))
         intent.putExtra(Intent.EXTRA_TEXT, emailBody)
 
-        intent.type = "message/rfc822"
-        startActivity(Intent.createChooser(intent, "Choose an Email client :"))
+        intent.type = getString(R.string.message_rfc822)
+        startActivity(Intent.createChooser(intent, getString(R.string.emailClient)))
 
 }
 

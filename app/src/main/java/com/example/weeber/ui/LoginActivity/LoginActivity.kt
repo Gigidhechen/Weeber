@@ -1,4 +1,4 @@
-package com.example.weeber.ui
+package com.example.weeber.ui.LoginActivity
 
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -10,16 +10,19 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.weeber.R
+import com.example.weeber.ui.MainActivity
+import com.example.weeber.ui.MainPresenter
 import com.google.firebase.auth.FirebaseAuth
 
-class LoginActivity : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
+class LoginActivity : AppCompatActivity(), LoginContract.View {
+    private var presenter: LoginPresenter? = null
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.login_activity)
-        auth = FirebaseAuth.getInstance()
+        presenter = LoginPresenter(this,this)
+
         val emailEditText = findViewById<EditText>(R.id.LoginEmail)
         val passwordEditText = findViewById<EditText>(R.id.LoginPassword)
         val buttonLogin = findViewById<Button>(R.id.LogIn)
@@ -33,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "El correo y la contraseña son necesarios", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-            signIn(email, password)
+            presenter?.signIn(email, password)
         }
 
         buttonsignIn.setOnClickListener {
@@ -50,43 +53,31 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            RegisterUser(email, password)
+            presenter?.RegisterUser(email, password)
         }
     }
 
     public override fun onStart() {
         super.onStart()
-        val currentUser = auth.currentUser
-        if (currentUser != null){
-
-        }
+        presenter?.checkCurrentUser()
     }
 
-    private fun signIn (email: String, password: String){
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    Log.d(TAG, "signInWithEmail:success")
-                    val user = auth.currentUser
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(this, "No se pudo hacer Login", Toast.LENGTH_LONG).show()
-                }
-            }
-
+    override fun onLoginSuccess() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 
-    private fun RegisterUser (email: String, password: String){
-        auth.createUserWithEmailAndPassword(email,password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful){
-                    Toast.makeText(this, "Registro exitoso!", Toast.LENGTH_LONG).show()
-                    signIn(email, password)
-                } else {
-                    Toast.makeText(this, "Fallo en el registro. Intentalo de nuevo", Toast.LENGTH_LONG).show()
-                }
-            }
+    override fun onLoginFailure(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
+
+    override fun onRegistrationSuccess() {
+        Toast.makeText(this, "Registro exitoso!", Toast.LENGTH_LONG).show()
+    }
+
+    override fun onRegistrationFailure(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+
 }

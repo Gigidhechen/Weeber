@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weeber.R
 import com.example.weeber.data.model.User
-import com.example.weeber.data.remote.UserInfo
+import com.example.weeber.data.remote.UserInformation
 
 class RecyclerAdapter (val items : ArrayList<User>?) : RecyclerView.Adapter<RecyclerAdapter.TimesViewHolder>() {
     private var onContractClickListener : OnContractClickListener? = null
@@ -61,14 +61,14 @@ class RecyclerAdapter (val items : ArrayList<User>?) : RecyclerView.Adapter<Recy
                 name.text = info.name?.first + " " + info.name?.last
                 gender.text = info.gender
                 image.setImageBitmap(imageUser)
-                if(UserInfo.user.Price.size != 0){
-                    price.text = "$" +UserInfo.user.Price[position]?.toString()
+                if(UserInformation.user.Price.size != 0){
+                    price.text = "$" +UserInformation.user.Price[position]?.toString()
                 }
-                if(UserInfo.user.review.size != 0){
-                    review.text = UserInfo.user.review[position].toString()+ "/100"
+                if(UserInformation.user.review.size != 0){
+                    review.text = UserInformation.user.review[position].toString()+ "/100"
                 }
-                if(UserInfo.user.distance.size != 0){
-                    distance.text = UserInfo.user.distance[position].toString()+ " Km"
+                if(UserInformation.user.distance.size != 0){
+                    distance.text = UserInformation.user.distance[position].toString()+ " Km"
                 }
             }
         }

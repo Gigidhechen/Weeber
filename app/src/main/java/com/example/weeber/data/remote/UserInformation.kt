@@ -2,7 +2,7 @@ package com.example.weeber.data.remote
 
 import com.example.weeber.data.model.User
 
-object UserInfo {
+object UserInformation {
     object user {
         var user: User = User(null,null,null,null,null,null)
         var review = ArrayList<Int>()

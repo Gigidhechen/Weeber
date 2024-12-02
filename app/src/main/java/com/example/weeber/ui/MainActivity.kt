@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weeber.R
 import com.example.weeber.data.model.User
-import com.example.weeber.data.remote.UserInfo
+import com.example.weeber.data.remote.UserInformation
 import com.example.weeber.ui.CardActivity.CardActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -59,9 +59,9 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
         recyclerAdapter.setOnClickListener(object : RecyclerAdapter.OnContractClickListener {
             override fun onClick(position: Int, user: User) {
-                UserInfo.currentPos.pos=position
-                UserInfo.user.user = user
-                UserInfo.precio.precio = UserInfo.user.Price[position]
+                UserInformation.currentPos.pos=position
+                UserInformation.user.user = user
+                UserInformation.precio.precio = UserInformation.user.Price[position]
                 val intent = Intent(this@MainActivity, CardActivity::class.java)
                 startActivity(intent)
             }
